@@ -24,7 +24,7 @@ namespace UrlShortener.Repositories
 
         public Shortener GetByShortener(string shortener)
         {
-            return _context.Shorteners.FirstOrDefault(x => x.Shortened == shortener && x.ExpirateDate < DateTime.Now);
+            return _context.Shorteners.FirstOrDefault(x => x.Shortened == shortener && x.ExpirateDate > DateTime.Now);
         }
     }
 }

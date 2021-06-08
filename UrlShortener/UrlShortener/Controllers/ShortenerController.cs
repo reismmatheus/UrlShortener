@@ -21,7 +21,7 @@ namespace UrlShortener.Controllers
             _logger = logger;
             _shortenerBusiness = shortenerBusiness;
         }
-        [HttpGet("shortener")]
+        [HttpGet("{shortener}")]
         public IActionResult GetByShortener(string shortener)
         {
             var url = _shortenerBusiness.GetByShortener(shortener);
@@ -33,10 +33,15 @@ namespace UrlShortener.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult Create([FromBody] string full)
+        [HttpPost("{full}")]
+        public IActionResult Create(string full)
         {
             var insert = _shortenerBusiness.Add(full);
+
+            if(string.IsNullOrEmpty(insert))
+            {
+                return BadRequest();
+            }
 
             return Ok(insert);
         }

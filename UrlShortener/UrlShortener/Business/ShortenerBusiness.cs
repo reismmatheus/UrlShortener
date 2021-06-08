@@ -11,8 +11,17 @@ namespace UrlShortener.Business
     public class ShortenerBusiness : IShortenerBusiness
     {
         private readonly IShortenerRepository _shortenerRepository;
+        public ShortenerBusiness(IShortenerRepository shortenerRepository)
+        {
+            _shortenerRepository = shortenerRepository;
+        }
         public string Add(string full)
         {
+            if (!CheckURLValid(full))
+            {
+                return "";
+            }
+
             var shortener = new Shortener
             {
                 Full = full,
@@ -40,5 +49,7 @@ namespace UrlShortener.Business
             }
             return resultStringBuilder.ToString();
         }
+
+        private bool CheckURLValid(string source) => Uri.TryCreate(source, UriKind.Absolute, out Uri uriResult) && uriResult.Scheme == Uri.UriSchemeHttps;
     }
 }
