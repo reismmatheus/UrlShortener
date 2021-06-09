@@ -12,7 +12,7 @@ Install the dependencies and devDependencies and start the server.
 Run in https://localhost:5001
 
 ##### Swagger
-![Endpoints](https://raw.githubusercontent.com/reismmatheus/urlShortener/main/blob/swagger.png)
+![Endpoints](https://raw.githubusercontent.com/reismmatheus/urlShortener/dev/blob/swagger.png)
 
 ## Tech
 
